@@ -1,5 +1,7 @@
+using Eventastico.API.Data;
 using Eventastico.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Eventastico.API.Controllers
 {
@@ -8,12 +10,17 @@ namespace Eventastico.API.Controllers
     public class EventoController : ControllerBase
     {
 
-        public EventoController() { }
+        private readonly DataContext _context;
+
+        public EventoController(DataContext dataContext)
+        { 
+            _context = dataContext;
+        }
 
         [HttpGet(Name = "GetEvent")]
         public IEnumerable<Evento> Get()
         {
-            return null;
+            return _context.Eventos.ToList();
         }
     }
 
