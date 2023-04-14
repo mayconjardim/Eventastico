@@ -1,3 +1,6 @@
+using Eventastico.API.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -8,6 +11,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+
+//Services
+builder.Services.AddDbContext<DataContext>(DbContextOptions =>
+            DbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:EventasticoDbConnectionString"]));
+
+
+
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
