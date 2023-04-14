@@ -10,17 +10,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
-
-
 //Services
 builder.Services.AddDbContext<DataContext>(DbContextOptions =>
             DbContextOptions.UseSqlite(builder.Configuration["ConnectionStrings:EventasticoDbConnectionString"]));
 
 
-
-
-
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
